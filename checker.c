@@ -48,6 +48,6 @@ int main() {
   int(*ChargeRate_FP)(float) = ChargeRate;
   
   
-    assert(batteryIsOk(Temperature_Range(25), SOC(70), ChargeRate(0.7));
+    assert(batteryIsOk(Temperature_Range(25), SOC(70), ChargeRate(0.7)));
 //  assert(!batteryIsOk(50, 85, 0));
 }
