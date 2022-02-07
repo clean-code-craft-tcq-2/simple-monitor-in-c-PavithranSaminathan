@@ -20,7 +20,7 @@ int Temperature_Range(float Temp_F )
 
 int SOC(float SOC_F)
 {
-  if((SOC_LOW_THRESHOLD > SOC_F) || (SOC_HIGH_THRESHOLD < SOC_f))
+  if((SOC_LOW_THRESHOLD > SOC_F) || (SOC_HIGH_THRESHOLD < SOC_F))
   {
     printf("State of Charge out of range!\n");
     return 0;
@@ -41,7 +41,7 @@ int batteryIsOk(int (*Temperature_Range_FP)(float temp_F) , int (*SOC_FP)(float 
 {
   
   
-  return (Temperature_Range(temp_F) && SOC(soc_F) && ChargeRate(ChargeRate_F));
+  return (Temperature_Range_FP(temp_F) && SOC_FP(soc_F) && ChargeRate_FP(ChargeRate_F));
   
     #if 0
   if(temperature < 0 || temperature > 45) {
@@ -66,6 +66,6 @@ int main() {
   int(*ChargeRate_FP)(float) = ChargeRate;
   
   
-  assert(batteryIsOk(25, 70, 0.7));
-  assert(!batteryIsOk(50, 85, 0));
+  assert(batteryIsOk(Temperature_Range(25), SOC(70), ChargeRate(0.7));
+//  assert(!batteryIsOk(50, 85, 0));
 }
