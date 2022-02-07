@@ -52,7 +52,7 @@ int ChargeRate(float chargeRate_F)
   }
 }
 
-int batteryIsOk(float ATemp_F,float Asoc_F, float AChargeRate_F,int (*Temperature_Range_FP)(float temp_F) , int (*SOC_FP)(float soc_F) , int(*ChargeRate_FP)(float ChargeRate_F) ) 
+int batteryIsOk(float ATemp_F,float Asoc_F, float AChargeRate_F,int (*Temperature_Range_FP)(float) , int (*SOC_FP)(float) , int(*ChargeRate_FP)(float)) 
 {    
   return (Temperature_Range_FP(ATemp_F) && SOC_FP(Asoc_F) && ChargeRate_FP(AChargeRate_F));   
 }
