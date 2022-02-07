@@ -16,6 +16,10 @@ int Temperature_Range(float Temp_F )
     printf("Temperature out of range!\n");
     return 0;
   }
+  else
+  {
+    return 1;
+  }
 }
 
 int SOC(float SOC_F)
@@ -24,7 +28,11 @@ int SOC(float SOC_F)
   {
     printf("State of Charge out of range!\n");
     return 0;
-  } 
+  }
+    else
+  {
+    return 1;
+  }
 }
 
 int ChargeRate(float chargeRate_F)
@@ -33,7 +41,11 @@ int ChargeRate(float chargeRate_F)
   {
     printf("Charge Rate out of range!\n");
     return 0;
-  } 
+  }
+    else
+  {
+    return 1;
+  }
 }
 
 int batteryIsOk(int (*Temperature_Range_FP)(float temp_F) , int (*SOC_FP)(float soc_F) , int(*ChargeRate_FP)(float ChargeRate_F) ) 
