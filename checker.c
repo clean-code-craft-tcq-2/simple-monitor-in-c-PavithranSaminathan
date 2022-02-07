@@ -52,9 +52,9 @@ int ChargeRate(float chargeRate_F)
   }
 }
 
-int batteryIsOk(int (*Temperature_Range_FP)(float temp_F) , int (*SOC_FP)(float soc_F) , int(*ChargeRate_FP)(float ChargeRate_F) ) 
+int batteryIsOk(float ATemp_F,float Asoc_F, float AChargeRate_F,int (*Temperature_Range_FP)(float temp_F) , int (*SOC_FP)(float soc_F) , int(*ChargeRate_FP)(float ChargeRate_F) ) 
 {    
-  return (Temperature_Range_FP(temp_F) && SOC_FP(soc_F) && ChargeRate_FP(ChargeRate_F));   
+  return (Temperature_Range_FP(ATemp_F) && SOC_FP(Asoc_F) && ChargeRate_FP(AChargeRate_F));   
 }
 
 int main() 
@@ -64,7 +64,7 @@ int main()
   int(*ChargeRate_FP)(float) = ChargeRate;
   
   
-    assert(batteryIsOk(Temperature_Range_FP((float)25), SOC_FP(70), ChargeRate_FP(0.7)));
+    assert(batteryIsOk(25,70,0.7,Temperature_Range_FP, SOC_FP, ChargeRate_FP));
 //  assert(!batteryIsOk(50, 85, 0));
 
   return 0;
