@@ -9,6 +9,10 @@
 
 #define DEFAULT_CHARGE_RATE   (float)0.8
 
+int (*Temperature_Range_FP)(float);
+int (*SOC_FP)(float);
+int(*ChargeRate_FP)(float);
+
 int Temperature_Range(float Temp_F )
 {
   if((TEMP_LOW_THRESHOLD > Temp_F) || (TEMP_HIGH_THRESHOLD < Temp_F)) 
@@ -53,8 +57,8 @@ int batteryIsOk(int (*Temperature_Range_FP)(float temp_F) , int (*SOC_FP)(float 
   return (Temperature_Range_FP(temp_F) && SOC_FP(soc_F) && ChargeRate_FP(ChargeRate_F));   
 }
 
-int main() {
-  
+int main() 
+{  
   int (*Temperature_Range_FP)(float)= Temperature_Range;
   int (*SOC_FP)(float)=SOC;
   int(*ChargeRate_FP)(float) = ChargeRate;
@@ -62,4 +66,6 @@ int main() {
   
     assert(batteryIsOk(Temperature_Range_FP(25), SOC_FP(70), ChargeRate_FP(0.7)));
 //  assert(!batteryIsOk(50, 85, 0));
+
+  return 0;
 }
