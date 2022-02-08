@@ -71,8 +71,8 @@ int main()
     assert(!Temperature_Range(46));
   
     /*Assert function to check ChargeRate function*/
-    assert(!ChargeRate(0.7));
-    assert(ChargeRate(1));
+    assert(ChargeRate(0.7));
+    assert(!ChargeRate(1));
   
   return 0;
 }
