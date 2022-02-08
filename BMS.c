@@ -56,7 +56,7 @@ int main()
   
     /*Assert function to check batteryIsOk function */
    assert(batteryIsOk(25,70,0.7,Temperature_Range_FP, SOC_FP, ChargeRate_FP));
-   assert(!batteryIsOk(50, 85, 0));
+   assert(!batteryIsOk(50, 85, 0,Temperature_Range_FP, SOC_FP, ChargeRate_FP));
   
     /*Assert function to check SOC function*/
     assert(!SOC(19));
