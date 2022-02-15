@@ -4,20 +4,20 @@
 #define LANGUAGE ENGLISH
 
 #if(LANGUAGE == ENGLISH)
-const char *Notify ={"TEMPERATURE ALERT",
+const char *Notify[] ={"TEMPERATURE ALERT",
                      "SOC ALERT",
                      "CHARGE ALERT"
                     };
-const char *Warning ={"TEMPERATURE OUT OF RANGE",
+const char *Warning[] ={"TEMPERATURE OUT OF RANGE",
                      "SOC OUT OF RANGE ",
                      "CHARGE RATE TOO LOW"
                     };
 #elif(LANGUAGE == GERMAN)
-const char *Notify ={"TEMPERATURALARM",
+const char *Notify[] ={"TEMPERATURALARM",
                      "SOC-ALARM",
                      "LADEZAHLALARM"
                     };
-const char *Warning ={"TEMPERATUR AUSSERHALB DES BEREICHS",
+const char *Warning[] ={"TEMPERATUR AUSSERHALB DES BEREICHS",
                      "SOC AUSSERHALB DER REICHWEITE",
                      "LADESTUFE ZU NIEDRIG"
                     };
@@ -161,7 +161,7 @@ bool CheckChargeRate(float chargeRate_F,bool (*CheckChargeRatePrintWarning_FP)(f
   }
 }
 
-bool batteryIsOk(float ATemp_F,float Asoc_F, float AChargeRate_F,int (*Temperature_Range_FP)(float) , int (*SOC_FP)(float) , int(*ChargeRate_FP)(float)) 
+bool batteryIsOk(float ATemp_F,float Asoc_F, float AChargeRate_F,bool (*Temperature_Range_FP)(float) , bool (*SOC_FP)(float) , bool(*ChargeRate_FP)(float)) 
 {    
   return (Temperature_Range_FP(ATemp_F) && SOC_FP(Asoc_F) && ChargeRate_FP(AChargeRate_F));   
 }
