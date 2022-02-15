@@ -1,48 +1,145 @@
 #include "BMS.h"
 #include <assert.h>
 
+#define ENGLISH
 
+#ifdef ENGLISH
+const char *Notify ={"TEMPERATURE ABOUT OUT OF RANGE",
+                     "SOC ABOUT OUT OF RANGE ",
+                     "CHARGE RATE ABOUT TO LOW"
+                    };
+const char *Warning ={"TEMPERATURE OUT OF RANGE",
+                     "SOC OUT OF RANGE ",
+                     "CHARGE RATE TOO LOW"
+                    };
 
-/*To check Temperature violation */
-bool CheckTemperatureRange(float Temp_F )
+#endif
+
+void PrintData(const char *data)
+{
+  printf("%s",data);
+}
+bool PrintWarning(float ATemp_F)
 {
   if((TEMP_LOW_THRESHOLD > Temp_F) || (TEMP_HIGH_THRESHOLD < Temp_F)) 
   {
-    printf("Temperature out of range!\n");
-    return FALSE;
-  }
-  else if(((TEMP_LOW_THRESHOLD + TEMP_WARNING_TOLERANCE) > Temp_F) || ((TEMP_HIGH_THRESHOLD - TEMP_WARNING_TOLERANCE) < Temp_F))
-  {
+    PrintData(Notify[0]);
     return TRUE;
   }
   else
   {
+    return FALSE;
+  }
+}
+
+bool PrintAlarm(float ATemp_F)
+{
+  if(((TEMP_LOW_THRESHOLD + TEMP_WARNING_TOLERANCE) > Temp_F) || ((TEMP_HIGH_THRESHOLD - TEMP_WARNING_TOLERANCE) < Temp_F))
+  {
+    PrintData(Warning[0]);
     return TRUE;
+  }
+  else
+  {
+    return FALSE;
+  }
+}
+
+
+/*To check Temperature violation */
+bool CheckTemperatureRange(float ATemp_F,bool (*PrintWarning_FP)(float ATemp_F), bool (*PrintAlarm_FP)(float ATemp_F))
+{
+  if(PrintWarning_FP(ATemp_F))
+  {
+    return WarningResult;
+  }
+  else
+  {
+    return(PrintAlarm_FP(ATemp_F));
+  }
+}
+
+bool SOCPrintWarning(float SOC_F)
+{
+if(((SOC_LOW_THRESHOLD + SOCPrintAlarm_FP) > SOC_F) || ((SOC_HIGH_THRESHOLD - SOCPrintAlarm_FP ) < SOC_F))
+  {
+    PrintData(Notify[1]);
+    return TRUE;
+  }
+  else
+  {
+    return FALSE;
+  }
+}
+
+bool SOCPrintAlarm(float SOC_F)
+{
+if((SOC_LOW_THRESHOLD > SOC_F) || (SOC_HIGH_THRESHOLD < SOC_F))
+  {
+    PrintData(Warning[1]);
+    return TRUE;
+  }
+  else
+  {
+    return FALSE;
   }
 }
 
 /*To check State of Charge violation */
-bool CheckSOC(float SOC_F)
+bool CheckSOC(float SOC_F,bool (*SOCPrintWarning_FP)(float ATemp_F), bool (*SOCPrintAlarm_FP)(float ATemp_F))
 {
-  if((SOC_LOW_THRESHOLD > SOC_F) || (SOC_HIGH_THRESHOLD < SOC_F))
+  if(SOCPrintWarning(SOC_F))
   {
-    printf("State of Charge out of range!\n");
-    return FALSE;
+    return 1;
   }
   else
   {
+    return(SOCPrintAlarm_FP(SOC_F));
+  }
+  
+  
+}
+
+bool CheckChargeRatePrintWarning(float chargeRate_F)
+{
+   if((DEFAULT_CHARGE_RATE - TOLERANCE_CHARGE_RATE)< chargeRate_F && (DEFAULT_CHARGE_RATE > chargeRate_F ))
+  {
+    PrintData(Notify[2]);
     return TRUE;
+  }
+  else
+  {
+    return FALSE;
+  }
+}
+
+
+bool CheckChargeRatePrintAlarm(float chargeRate_F)
+{
+   if(DEFAULT_CHARGE_RATE < chargeRate_F )
+  {
+    PrintData(Warning[2]);
+    return TRUE;
+  }
+  else
+  {
+    return FALSE;
   }
 }
 
 /*To check ChargeRate violation */
-bool CheckChargeRate(float chargeRate_F)
+bool CheckChargeRate(float chargeRate_F,bool (*CheckChargeRatePrintWarning_FP)(float ATemp_F), bool (*CheckChargeRatePrintAlarm_FP)(float ATemp_F))
 {
-  if((DEFAULT_CHARGE_RATE + TOLERANCE_CHARGE_RATE)< chargeRate_F )
+  if(CheckChargeRatePrintWarning_FP(chargeRate_F))
   {
-    Printf("Charge Rate out of range!\n");
+    return TRUE;
+  }
+  else
+  {
     return FALSE;
   }
+}
+ 
   if(DEFAULT_CHARGE_RATE < chargeRate_F)
   {
     printf("Charge Rate out of range!\n");
