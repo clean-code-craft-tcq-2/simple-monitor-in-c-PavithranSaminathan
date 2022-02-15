@@ -71,7 +71,7 @@ bool CheckTemperatureRange(float ATemp_F,bool (*PrintWarning_FP)(float ATemp_F),
 
 bool SOCPrintWarning(float SOC_F)
 {
-if(((SOC_LOW_THRESHOLD + SOCPrintAlarm_FP) > SOC_F) || ((SOC_HIGH_THRESHOLD - SOCPrintAlarm_FP ) < SOC_F))
+if(((SOC_LOW_THRESHOLD + SOC_WARNING_TOLERANCE) > SOC_F) || ((SOC_HIGH_THRESHOLD - SOC_WARNING_TOLERANCE ) < SOC_F))
   {
     PrintData(Notify[1]);
     return TRUE;
@@ -97,7 +97,7 @@ if((SOC_LOW_THRESHOLD > SOC_F) || (SOC_HIGH_THRESHOLD < SOC_F))
 
 
 /*To check State of Charge violation */
-bool CheckSOC(float SOC_F,bool (*SOCPrintWarning_FP)(float ATemp_F), bool (*SOCPrintAlarm_FP)(float ATemp_F))
+bool CheckSOC(float SOC_F,bool (*SOCPrintWarning_FP)(float SOC_F), bool (*SOCPrintAlarm_FP)(float SOC_F))
 {
   if(SOCPrintWarning(SOC_F))
   {
@@ -138,7 +138,7 @@ bool CheckChargeRatePrintAlarm(float chargeRate_F)
 }
 
 /*To check ChargeRate violation */
-bool CheckChargeRate(float chargeRate_F,bool (*CheckChargeRatePrintWarning_FP)(float ATemp_F), bool (*CheckChargeRatePrintAlarm_FP)(float ATemp_F))
+bool CheckChargeRate(float chargeRate_F,bool (*CheckChargeRatePrintWarning_FP)(float chargeRate_F), bool (*CheckChargeRatePrintAlarm_FP)(float chargeRate_F))
 {
   if(CheckChargeRatePrintWarning_FP(chargeRate_F))
   {
@@ -171,10 +171,10 @@ int main()
   
 bool (*PrintWarning_FP)(float ATemp_F)=PrintAlarm;
 bool (*PrintAlarm_FP)(float ATemp_F)=PrintWarning;
-bool (*SOCPrintWarning_FP)(float ATemp_F)=SOCPrintWarning;
-bool (*SOCPrintAlarm_FP)(float ATemp_F)=SOCPrintAlarm;
-bool (*CheckChargeRatePrintWarning_FP)(float ATemp_F)=CheckChargeRatePrintWarning;
-bool (*CheckChargeRatePrintAlarm_FP)(float ATemp_F)=CheckChargeRatePrintAlarm;
+bool (*SOCPrintWarning_FP)(float SOC_F)=SOCPrintWarning;
+bool (*SOCPrintAlarm_FP)(float SOC_F)=SOCPrintAlarm;
+bool (*CheckChargeRatePrintWarning_FP)(float chargeRate_F)=CheckChargeRatePrintWarning;
+bool (*CheckChargeRatePrintAlarm_FP)(float chargeRate_F)=CheckChargeRatePrintAlarm;
 
 bool (*Temperature_Range_FP)(float)= CheckTemperatureRange;
 bool (*SOC_FP)(float)=CheckSOC;
