@@ -16,8 +16,8 @@ typedef unsigned char  bool;
 #define SOC_LOW_THRESHOLD     (float)20U
 #define SOC_HIGH_THRESHOLD    (float)80U
 
-#define TOLERANCE_CHARGE_RATE   float(0.2)
-#define DEFAULT_CHARGE_RATE   (float)0.8
+#define TOLERANCE_CHARGE_RATE  (float)0.2
+#define DEFAULT_CHARGE_RATE    (float)0.8
 
 int (*Temperature_Range_FP)(float);
 int (*SOC_FP)(float);
