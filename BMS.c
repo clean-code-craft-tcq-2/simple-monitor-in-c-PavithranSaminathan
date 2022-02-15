@@ -99,7 +99,7 @@ if((SOC_LOW_THRESHOLD > SOC_F) || (SOC_HIGH_THRESHOLD < SOC_F))
 /*To check State of Charge violation */
 bool CheckSOC(float SOC_F,bool (*SOCPrintWarning_FP)(float SOC_F), bool (*SOCPrintAlarm_FP)(float SOC_F))
 {
-  if(SOCPrintWarning(SOC_F))
+  if(SOCPrintWarning_FP(SOC_F))
   {
     return 1;
   }
@@ -146,18 +146,7 @@ bool CheckChargeRate(float chargeRate_F,bool (*CheckChargeRatePrintWarning_FP)(f
   }
   else
   {
-    return FALSE;
-  }
-}
- 
-  if(DEFAULT_CHARGE_RATE < chargeRate_F)
-  {
-    printf("Charge Rate out of range!\n");
-    return TRUE;
-  }
-  else
-  {
-    return TRUE;
+    return (CheckChargeRatePrintAlarm_FP(chargeRate_F));
   }
 }
 
