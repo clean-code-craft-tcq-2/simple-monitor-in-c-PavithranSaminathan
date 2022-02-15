@@ -1,12 +1,18 @@
 #include "BMS.h"
 #include <assert.h>
 
+#define TRUE     1
+#define FALSE    0
+
+typedef unsigned char  bool;
+
 #define TEMP_WARNING_TOLERANCE  4
 #define SOC_WARNING_TOLERANCE   4
 #define TOLERANCE_CHARGE_RATE   float(0.2)
 
+
 /*To check Temperature violation */
-int CheckTemperatureRange(float Temp_F )
+bool CheckTemperatureRange(float Temp_F )
 {
   if((TEMP_LOW_THRESHOLD > Temp_F) || (TEMP_HIGH_THRESHOLD < Temp_F)) 
   {
@@ -24,38 +30,39 @@ int CheckTemperatureRange(float Temp_F )
 }
 
 /*To check State of Charge violation */
-int CheckSOC(float SOC_F)
+bool CheckSOC(float SOC_F)
 {
   if((SOC_LOW_THRESHOLD > SOC_F) || (SOC_HIGH_THRESHOLD < SOC_F))
   {
     printf("State of Charge out of range!\n");
-    return 0;
+    return FALSE;
   }
-    else
+  else
   {
-    return 1;
+    return TRUE;
   }
 }
 
 /*To check ChargeRate violation */
-int CheckChargeRate(float chargeRate_F)
+bool CheckChargeRate(float chargeRate_F)
 {
   if((DEFAULT_CHARGE_RATE + TOLERANCE_CHARGE_RATE)< chargeRate_F )
   {
-    
+    Printf("Charge Rate out of range!\n");
+    return FALSE;
   }
   if(DEFAULT_CHARGE_RATE < chargeRate_F)
   {
     printf("Charge Rate out of range!\n");
-    return 0;
+    return TRUE;
   }
-    else
+  else
   {
-    return 1;
+    return TRUE;
   }
 }
 
-int batteryIsOk(float ATemp_F,float Asoc_F, float AChargeRate_F,int (*Temperature_Range_FP)(float) , int (*SOC_FP)(float) , int(*ChargeRate_FP)(float)) 
+bool batteryIsOk(float ATemp_F,float Asoc_F, float AChargeRate_F,int (*Temperature_Range_FP)(float) , int (*SOC_FP)(float) , int(*ChargeRate_FP)(float)) 
 {    
   return (Temperature_Range_FP(ATemp_F) && SOC_FP(Asoc_F) && ChargeRate_FP(AChargeRate_F));   
 }
