@@ -165,9 +165,9 @@ bool (*SOCPrintAlarm_FP)(float SOC_F)=SOCPrintAlarm;
 bool (*CheckChargeRatePrintWarning_FP)(float chargeRate_F)=CheckChargeRatePrintWarning;
 bool (*CheckChargeRatePrintAlarm_FP)(float chargeRate_F)=CheckChargeRatePrintAlarm;
 
-bool (*Temperature_Range_FP)(float)= CheckTemperatureRange;
-bool (*SOC_FP)(float)=CheckSOC;
-bool (*ChargeRate_FP)(float) = CheckChargeRate;
+//bool (*Temperature_Range_FP)(float)= CheckTemperatureRange;
+//bool (*SOC_FP)(float)=CheckSOC;
+//bool (*ChargeRate_FP)(float) = CheckChargeRate;
   
     /*Assert function to check batteryIsOk function */
   assert(batteryIsOk(25,70,0.7,Temperature_Range_FP, SOC_FP, ChargeRate_FP));
