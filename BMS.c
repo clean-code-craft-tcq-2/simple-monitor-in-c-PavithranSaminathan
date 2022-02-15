@@ -12,7 +12,7 @@ const char *Warning ={"TEMPERATURE OUT OF RANGE",
                      "SOC OUT OF RANGE ",
                      "CHARGE RATE TOO LOW"
                     };
-#ELIF(LANGUAGE == ENGLISH)
+#elif(LANGUAGE == ENGLISH)
 const char *Notify ={"TEMPERATURALARM",
                      "SOC-ALARM",
                      "LADEZAHLALARM"
