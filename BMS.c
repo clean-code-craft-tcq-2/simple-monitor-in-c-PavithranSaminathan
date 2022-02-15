@@ -1,24 +1,35 @@
 #include "BMS.h"
 #include <assert.h>
 
-#define ENGLISH
+#define LANGUAGE ENGLISH
 
-#ifdef ENGLISH
-const char *Notify ={"TEMPERATURE ABOUT OUT OF RANGE",
-                     "SOC ABOUT OUT OF RANGE ",
-                     "CHARGE RATE ABOUT TO LOW"
+#if(LANGUAGE == ENGLISH)
+const char *Notify ={"TEMPERATURE ALERT",
+                     "SOC ALERT",
+                     "CHARGE ALERT"
                     };
 const char *Warning ={"TEMPERATURE OUT OF RANGE",
                      "SOC OUT OF RANGE ",
                      "CHARGE RATE TOO LOW"
                     };
-
+#ELIF(LANGUAGE == ENGLISH)
+const char *Notify ={"TEMPERATURALARM",
+                     "SOC-ALARM",
+                     "LADEZAHLALARM"
+                    };
+const char *Warning ={"TEMPERATUR AUSSERHALB DES BEREICHS",
+                     "SOC AUSSERHALB DER REICHWEITE",
+                     "LADESTUFE ZU NIEDRIG"
+                    };
 #endif
+
+
 
 void PrintData(const char *data)
 {
-  printf("%s",data);
+  printf("%s\n",data);
 }
+
 bool PrintWarning(float ATemp_F)
 {
   if((TEMP_LOW_THRESHOLD > Temp_F) || (TEMP_HIGH_THRESHOLD < Temp_F)) 
@@ -44,7 +55,6 @@ bool PrintAlarm(float ATemp_F)
     return FALSE;
   }
 }
-
 
 /*To check Temperature violation */
 bool CheckTemperatureRange(float ATemp_F,bool (*PrintWarning_FP)(float ATemp_F), bool (*PrintAlarm_FP)(float ATemp_F))
@@ -85,6 +95,7 @@ if((SOC_LOW_THRESHOLD > SOC_F) || (SOC_HIGH_THRESHOLD < SOC_F))
   }
 }
 
+
 /*To check State of Charge violation */
 bool CheckSOC(float SOC_F,bool (*SOCPrintWarning_FP)(float ATemp_F), bool (*SOCPrintAlarm_FP)(float ATemp_F))
 {
@@ -96,9 +107,8 @@ bool CheckSOC(float SOC_F,bool (*SOCPrintWarning_FP)(float ATemp_F), bool (*SOCP
   {
     return(SOCPrintAlarm_FP(SOC_F));
   }
-  
-  
 }
+
 
 bool CheckChargeRatePrintWarning(float chargeRate_F)
 {
@@ -158,9 +168,17 @@ bool batteryIsOk(float ATemp_F,float Asoc_F, float AChargeRate_F,int (*Temperatu
 
 int main() 
 {  
-  int (*Temperature_Range_FP)(float)= CheckTemperatureRange;
-  int (*SOC_FP)(float)=CheckSOC;
-  int(*ChargeRate_FP)(float) = CheckChargeRate;
+  
+bool (*PrintWarning_FP)(float ATemp_F)=PrintAlarm;
+bool (*PrintAlarm_FP)(float ATemp_F)=PrintWarning;
+bool (*SOCPrintWarning_FP)(float ATemp_F)=SOCPrintWarning;
+bool (*SOCPrintAlarm_FP)(float ATemp_F)=SOCPrintAlarm;
+bool (*CheckChargeRatePrintWarning_FP)(float ATemp_F)=CheckChargeRatePrintWarning;
+bool (*CheckChargeRatePrintAlarm_FP)(float ATemp_F)=CheckChargeRatePrintAlarm;
+
+bool (*Temperature_Range_FP)(float)= CheckTemperatureRange;
+bool (*SOC_FP)(float)=CheckSOC;
+bool (*ChargeRate_FP)(float) = CheckChargeRate;
   
     /*Assert function to check batteryIsOk function */
    assert(batteryIsOk(25,70,0.7,Temperature_Range_FP, SOC_FP, ChargeRate_FP));
