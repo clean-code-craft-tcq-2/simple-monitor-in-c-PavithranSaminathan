@@ -30,7 +30,7 @@ void PrintData(const char *data)
   printf("%s\n",data);
 }
 
-bool PrintWarning(float ATemp_F)
+bool TempPrintWarning(float ATemp_F)
 {
   if((TEMP_LOW_THRESHOLD > ATemp_F) || (TEMP_HIGH_THRESHOLD < ATemp_F)) 
   {
@@ -43,7 +43,7 @@ bool PrintWarning(float ATemp_F)
   }
 }
 
-bool PrintAlarm(float ATemp_F)
+bool TempPrintAlarm(float ATemp_F)
 {
   if(((TEMP_LOW_THRESHOLD + TEMP_WARNING_TOLERANCE) > ATemp_F) || ((TEMP_HIGH_THRESHOLD - TEMP_WARNING_TOLERANCE) < ATemp_F))
   {
@@ -166,8 +166,8 @@ bool batteryIsOk(float ATemp_F,float Asoc_F, float AChargeRate_F)
 int main() 
 {  
   
-bool (*PrintWarning_FP)(float ATemp_F)=PrintAlarm;
-bool (*PrintAlarm_FP)(float ATemp_F)=PrintWarning;
+bool (*PrintWarning_FP)(float ATemp_F)=TempPrintAlarm;
+bool (*PrintAlarm_FP)(float ATemp_F)=TempPrintWarning;
 bool (*SOCPrintWarning_FP)(float SOC_F)=SOCPrintWarning;
 bool (*SOCPrintAlarm_FP)(float SOC_F)=SOCPrintAlarm;
 bool (*CheckChargeRatePrintWarning_FP)(float chargeRate_F)=CheckChargeRatePrintWarning;
