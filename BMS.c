@@ -1,14 +1,6 @@
 #include "BMS.h"
 #include <assert.h>
 
-#define TRUE     1
-#define FALSE    0
-
-typedef unsigned char  bool;
-
-#define TEMP_WARNING_TOLERANCE  4
-#define SOC_WARNING_TOLERANCE   4
-#define TOLERANCE_CHARGE_RATE   float(0.2)
 
 
 /*To check Temperature violation */
