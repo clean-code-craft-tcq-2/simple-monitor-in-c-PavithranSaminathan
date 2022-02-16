@@ -19,8 +19,11 @@ typedef unsigned char  bool;
 #define TOLERANCE_CHARGE_RATE  (float)0.2
 #define DEFAULT_CHARGE_RATE    (float)0.8
 
-int (*Temperature_Range_FP)(float);
-int (*SOC_FP)(float);
-int(*ChargeRate_FP)(float);
+bool (*PrintWarning_FP)(float ATemp_F);
+bool (*PrintAlarm_FP)(float ATemp_F);
+bool (*SOCPrintWarning_FP)(float SOC_F);
+bool (*SOCPrintAlarm_FP)(float SOC_F);
+bool (*CheckChargeRatePrintWarning_FP)(float chargeRate_F);
+bool (*CheckChargeRatePrintAlarm_FP)(float chargeRate_F);
 
 #endif
