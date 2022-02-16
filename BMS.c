@@ -47,7 +47,7 @@ int main()
   
   Test_SOCPrintWarning(19,TRUE);
   Test_SOCPrintWarning(20,TRUE);
-  Test_SOCPrintWarning(50,TRUE);
+  Test_SOCPrintWarning(50,FALSE);
   
   Test_SOCPrintAlarm(19,FALSE);
   
