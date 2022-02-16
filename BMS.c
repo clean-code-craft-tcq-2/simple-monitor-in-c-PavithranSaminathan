@@ -175,7 +175,7 @@ bool (*CheckChargeRatePrintAlarm_FP)(float chargeRate_F)=CheckChargeRatePrintAla
 //bool (*ChargeRate_FP)(float) = CheckChargeRate;
   
     /*Assert function to check batteryIsOk function */
-  assert(!batteryIsOk(25,70,0.7));
+  assert(batteryIsOk(25,70,0.7));
 //   assert(!batteryIsOk(50, 85, 0,Temperature_Range_FP, SOC_FP, ChargeRate_FP));
   
     /*Assert function to check SOC function*/
