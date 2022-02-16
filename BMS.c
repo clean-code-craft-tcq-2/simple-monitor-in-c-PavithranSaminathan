@@ -61,6 +61,10 @@ int main()
   Test_CheckTemperatureRange(12,TRUE);
   Test_CheckTemperatureRange(47,FALSE);
   
+  Test_TempPrintAlarm(47,FALSE);
+  
+  Test_TempPrintWarning(47,FALSE);
+  
   /*Assert function to check ChargeRate function*/  
   //CheckChargeRate(0.7,TRUE);
   
