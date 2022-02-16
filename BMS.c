@@ -55,7 +55,7 @@ bool TempPrintAlarm(float ATemp_F)
 }
 
 /*To check Temperature violation */
-bool CheckTemperatureRange(float ATemp_F,bool (*PrintWarning_FP)(float), bool (*PrintAlarm_FP)(float))
+bool CheckTemperatureRange(float ATemp_F,bool (*TempPrintWarning_FP)(float), bool (*TempPrintAlarm_FP)(float))
 {
   if(PrintWarning_FP(ATemp_F))
   {
@@ -153,7 +153,11 @@ bool CheckChargeRate(float chargeRate_F,bool (*CheckChargeRatePrintWarning_FP)(f
 //  return (Temperature_Range_FP(ATemp_F) && SOC_FP(Asoc_F) && ChargeRate_FP(AChargeRate_F));   
 //}
 
-bool batteryIsOk(float ATemp_F,float Asoc_F, float AChargeRate_F,bool (*SOCPrintWarning_FP)(float), bool (*SOCPrintAlarm_FP)(float))
+bool batteryIsOk(float ATemp_F,float Asoc_F, float AChargeRate_F,
+                 bool (*SOCPrintWarning_FP)(float), bool (*SOCPrintAlarm_FP)(float),
+                 bool (*SOCPrintWarning_FP)(float), bool (*SOCPrintAlarm_FP)(float),
+                 bool (*TempPrintWarning_FP)(float), bool (*TempPrintAlarm_FP)(float)
+                )
 {
   return (CheckSOC(Asoc_F,SOCPrintWarning_FP,SOCPrintAlarm_FP));// && CheckChargeRate(AChargeRate_F,CheckChargeRatePrintWarning_FP,CheckChargeRatePrintAlarm_FP) && CheckTemperatureRange(ATemp_F,PrintWarning_FP,PrintAlarm_FP));
 }
@@ -162,8 +166,8 @@ bool batteryIsOk(float ATemp_F,float Asoc_F, float AChargeRate_F,bool (*SOCPrint
 int main() 
 {  
   
-bool (*PrintWarning_FP)(float ATemp_F)=TempPrintWarning;
-bool (*PrintAlarm_FP)(float ATemp_F)=TempPrintAlarm;
+bool (*TempPrintWarning_FP)(float ATemp_F)=TempPrintWarning;
+bool (*TempPrintAlarm_FP)(float ATemp_F)=TempPrintAlarm;
 bool (*SOCPrintWarning_FP)(float SOC_F)=SOCPrintWarning;
 bool (*SOCPrintAlarm_FP)(float SOC_F)=SOCPrintAlarm;
 bool (*CheckChargeRatePrintWarning_FP)(float chargeRate_F)=CheckChargeRatePrintWarning;
