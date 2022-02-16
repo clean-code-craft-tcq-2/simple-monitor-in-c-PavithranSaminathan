@@ -30,7 +30,7 @@ void PrintData(const char *data)
 
 bool TempPrintWarning(float ATemp_F)
 {
-  if((TEMP_LOW_THRESHOLD > ATemp_F) || (TEMP_HIGH_THRESHOLD < ATemp_F)) 
+  if(((TEMP_LOW_THRESHOLD + TEMP_WARNING_TOLERANCE) > ATemp_F) || ((TEMP_HIGH_THRESHOLD - TEMP_WARNING_TOLERANCE) < ATemp_F))
   {
     PrintData(Notify[0]);
     return TRUE;
@@ -43,7 +43,7 @@ bool TempPrintWarning(float ATemp_F)
 
 bool TempPrintAlarm(float ATemp_F)
 {
-  if(((TEMP_LOW_THRESHOLD + TEMP_WARNING_TOLERANCE) > ATemp_F) || ((TEMP_HIGH_THRESHOLD - TEMP_WARNING_TOLERANCE) < ATemp_F))
+  if((TEMP_LOW_THRESHOLD > ATemp_F) || (TEMP_HIGH_THRESHOLD < ATemp_F))
   {
     PrintData(Alarm[0]);
     return FALSE;
@@ -175,7 +175,7 @@ bool (*CheckChargeRatePrintAlarm_FP)(float chargeRate_F)=CheckChargeRatePrintAla
 //bool (*ChargeRate_FP)(float) = CheckChargeRate;
   
     /*Assert function to check batteryIsOk function */
-  assert(batteryIsOk(25,70,0.7));
+  assert(!batteryIsOk(25,70,0.7));
 //   assert(!batteryIsOk(50, 85, 0,Temperature_Range_FP, SOC_FP, ChargeRate_FP));
   
     /*Assert function to check SOC function*/
