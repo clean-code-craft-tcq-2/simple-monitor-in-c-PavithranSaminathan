@@ -186,7 +186,7 @@ bool (*CheckChargeRatePrintAlarm_FP)(float chargeRate_F)=CheckChargeRatePrintAla
 //    assert(!SOC(81));
   
     /*Assert function to check Temperature_Range function*/
-    assert(!CheckTemperatureRange(0,PrintWarning_FP,PrintAlarm_FP));
+    assert(CheckTemperatureRange(0,PrintWarning_FP,PrintAlarm_FP));
 //    assert(Temperature_Range(44));
 //    assert(!Temperature_Range(46));
   
