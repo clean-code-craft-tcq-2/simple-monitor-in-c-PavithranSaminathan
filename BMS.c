@@ -8,7 +8,7 @@ const char *Notify[] ={"TEMPERATURE ALERT",
                      "SOC ALERT",
                      "CHARGE ALERT"
                     };
-const char *Warning[] ={"TEMPERATURE OUT OF RANGE",
+const char *Alarm[] ={"TEMPERATURE OUT OF RANGE",
                      "SOC OUT OF RANGE ",
                      "CHARGE RATE TOO LOW"
                     };
@@ -17,7 +17,7 @@ const char *Notify[] ={"TEMPERATURALARM",
                      "SOC-ALARM",
                      "LADEZAHLALARM"
                     };
-const char *Warning[] ={"TEMPERATUR AUSSERHALB DES BEREICHS",
+const char *Alarm[] ={"TEMPERATUR AUSSERHALB DES BEREICHS",
                      "SOC AUSSERHALB DER REICHWEITE",
                      "LADESTUFE ZU NIEDRIG"
                     };
@@ -45,12 +45,12 @@ bool TempPrintAlarm(float ATemp_F)
 {
   if(((TEMP_LOW_THRESHOLD + TEMP_WARNING_TOLERANCE) > ATemp_F) || ((TEMP_HIGH_THRESHOLD - TEMP_WARNING_TOLERANCE) < ATemp_F))
   {
-    PrintData(Warning[0]);
-    return TRUE;
+    PrintData(Alarm[0]);
+    return FALSE;
   }
   else
   {
-    return FALSE;
+    return TRUE;
   }
 }
 
@@ -84,12 +84,12 @@ bool SOCPrintAlarm(float SOC_F)
 {
 if((SOC_LOW_THRESHOLD > SOC_F) || (SOC_HIGH_THRESHOLD < SOC_F))
   {
-    PrintData(Warning[1]);
-    return TRUE;
+    PrintData(Alarm[1]);
+    return FALSE;
   }
   else
   {
-    return FALSE;
+    return TRUE;
   }
 }
 
@@ -126,12 +126,12 @@ bool CheckChargeRatePrintAlarm(float chargeRate_F)
 {
    if(DEFAULT_CHARGE_RATE < chargeRate_F )
   {
-    PrintData(Warning[2]);
-    return TRUE;
+    PrintData(Alarm[2]);
+    return FALSE;
   }
   else
   {
-    return FALSE;
+    return TRUE;
   }
 }
 
