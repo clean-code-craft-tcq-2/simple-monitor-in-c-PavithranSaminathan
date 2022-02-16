@@ -58,7 +58,7 @@ int main()
   Test_SOCPrintAlarm(85,FALSE);
   
   /*Assert function to check Temperature_Range function*/
-  //Test_CheckTemperatureRange(0,TRUE);
+  Test_CheckTemperatureRange(12,TRUE);
   
   /*Assert function to check ChargeRate function*/  
   //CheckChargeRate(0.7,TRUE);
