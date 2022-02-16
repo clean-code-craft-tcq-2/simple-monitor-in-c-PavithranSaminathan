@@ -32,12 +32,39 @@ bool TempPrintAlarm(float ATemp_F)
 /*To check Temperature violation */
 bool CheckTemperatureRange(float ATemp_F,bool (*TempPrintWarning_FP)(float), bool (*TempPrintAlarm_FP)(float))
 {
-  if(TempPrintWarning_FP(ATemp_F))
+  if(!TempPrintAlarm_FP(ATemp_F))
   {
-    return TRUE;
+    return FALSE;
   }
   else
   {
-    return(TempPrintAlarm_FP(ATemp_F));
+    TempPrintWarning_FP(ATemp_F);
+    return TRUE;
   }
 }
+
+#if(WORK_ENVIRONMENT == TEST)
+
+void Test_CheckTemperatureRange(float ATemp_F,bool Expected_Result)
+{
+  bool Test_Result;
+  Test_Result = CheckTemperatureRange(ATemp_F,TempPrintWarning_FP,TempPrintAlarm_FP); 
+  assert(Expected_Result == Test_Result);
+}
+
+void Test_TempPrintAlarm(float ATemp_F,bool Expected_Result)
+{
+  bool Test_Result;
+  Test_Result = TempPrintAlarm(ATemp_F); 
+  assert(Expected_Result == Test_Result);
+}
+
+void Test_TempPrintWarning(float ATemp_F,bool Expected_Result)
+{
+  bool Test_Result;
+  Test_Result = TempPrintWarning(ATemp_F); 
+  assert(Expected_Result == Test_Result);
+}
+
+
+#endif
