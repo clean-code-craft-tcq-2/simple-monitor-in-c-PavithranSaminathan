@@ -3,7 +3,7 @@
 
 #include <stdio.h>
 
-#define LANGUAGE ENGLISH
+#define LANGUAGE GERMAN
 
 extern const char *Notify[];
 extern const char *Alarm[];
