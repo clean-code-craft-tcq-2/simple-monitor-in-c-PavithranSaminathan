@@ -1,4 +1,6 @@
 #include "TempMonitor.h"
+#include <assert.h>
+
 
 bool (*TempPrintWarning_FP)(float ATemp_F)=TempPrintWarning;
 bool (*TempPrintAlarm_FP)(float ATemp_F)=TempPrintAlarm;
