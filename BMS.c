@@ -59,6 +59,7 @@ int main()
   
   /*Assert function to check Temperature_Range function*/
   Test_CheckTemperatureRange(12,TRUE);
+  Test_CheckTemperatureRange(47,FALSE);
   
   /*Assert function to check ChargeRate function*/  
   //CheckChargeRate(0.7,TRUE);
