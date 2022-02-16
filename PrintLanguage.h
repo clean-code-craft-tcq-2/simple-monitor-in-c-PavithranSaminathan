@@ -7,6 +7,6 @@
 extern const char *Notify[];
 extern const char *Alarm[];
 
-extern void PrintData(const char *data)
+extern void PrintData(const char *data);
 
 #endif
