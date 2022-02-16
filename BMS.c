@@ -20,7 +20,7 @@ bool batteryIsOk(float ATemp_F,float Asoc_F, float AChargeRate_F,
               CheckTemperatureRange(ATemp_F,TempPrintWarning_FP,TempPrintAlarm_FP));
 }
 
-bool Check_BatteryIsOk(float ATemp_F,float Asoc_F, float AChargeRate_F,bool Expected_Result)
+bool Test_BatteryIsOk(float ATemp_F,float Asoc_F, float AChargeRate_F,bool Expected_Result)
 {
  bool Test_Result;
  Test_Result= batteryIsOk(ATemp_F,Asoc_F,AChargeRate_F,
@@ -32,29 +32,27 @@ bool Check_BatteryIsOk(float ATemp_F,float Asoc_F, float AChargeRate_F,bool Expe
 }
 
 int main() 
-{  
+{ 
+  #if(WORK_ENVIRONMENT == PRODUCTION)
+  
+  batteryIsOk(25,70,0.7,SOCPrintWarning_FP,SOCPrintAlarm_FP,TempPrintWarning_FP,TempPrintAlarm_FP,CheckChargeRatePrintWarning_FP,CheckChargeRatePrintAlarm_FP);
+  
+  #endif
+  
+  
   #if(WORK_ENVIRONMENT == TEST)
-   /*Assert function to check batteryIsOk function */
-  Check_BatteryIsOk(25,70,0.7,TRUE);
   
-  //assert(batteryIsOk(25,70,0.7,SOCPrintWarning_FP,SOCPrintAlarm_FP,TempPrintWarning_FP,TempPrintAlarm_FP,CheckChargeRatePrintWarning_FP,CheckChargeRatePrintAlarm_FP));
-//   assert(!batteryIsOk(50, 85, 0,Temperature_Range_FP, SOC_FP, ChargeRate_FP));
+  /*Assert function to check batteryIsOk function */
+  Test_BatteryIsOk(25,70,0.7,TRUE);
+ 
+  /*Assert function to check SOC function*/    
+  Test_CheckSOC(19,TRUE);
   
-    /*Assert function to check SOC function*/
-    assert(CheckSOC(19,SOCPrintWarning_FP,SOCPrintAlarm_FP));
-//    assert(SOC(20));
-//    assert(SOC(79));
-//    assert(SOC(80));
-//    assert(!SOC(81));
+  /*Assert function to check Temperature_Range function*/
+  //Test_CheckTemperatureRange(0,TRUE);
   
-    /*Assert function to check Temperature_Range function*/
-    assert(CheckTemperatureRange(0,TempPrintWarning_FP,TempPrintAlarm_FP));
-//    assert(Temperature_Range(44));
-//    assert(!Temperature_Range(46));
-  
-    /*Assert function to check ChargeRate function*/
-    assert(CheckChargeRate(0.7,CheckChargeRatePrintWarning_FP,CheckChargeRatePrintAlarm_FP));
- //   assert(!ChargeRate(1));
+  /*Assert function to check ChargeRate function*/  
+  //CheckChargeRate(0.7,TRUE);
   
   #endif
   return 0;
