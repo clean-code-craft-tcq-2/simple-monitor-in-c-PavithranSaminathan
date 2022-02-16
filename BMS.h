@@ -15,3 +15,5 @@ typedef unsigned char  bool;
 Test_CheckSOC(float ASOC,bool Expected_Result);
 
 #endif
+
+#endif
