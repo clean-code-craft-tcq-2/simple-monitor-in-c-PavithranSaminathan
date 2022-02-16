@@ -43,7 +43,7 @@ int main()
   Test_BatteryIsOk(25,70,0.7,TRUE);
  
   /*Assert function to check SOC function*/    
-  Test_CheckSOC(19,TRUE);
+  Test_CheckSOC(19,FALSE);
   
   Test_SOCPrintWarning(19,TRUE);
   Test_SOCPrintWarning(20,TRUE);
