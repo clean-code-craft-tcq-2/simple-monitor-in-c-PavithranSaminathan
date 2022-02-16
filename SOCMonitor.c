@@ -44,9 +44,13 @@ bool CheckSOC(float SOC_F,bool (*SOCPrintWarning_FP)(float), bool (*SOCPrintAlar
   }
 }
 
+#if(WORK_ENVIRONMENT == TEST)
+
 Test_CheckSOC(float ASOC,bool Expected_Result)
 {
   bool Test_Result;
   Test_Result=CheckSOC(ASOC,SOCPrintWarning_FP,SOCPrintAlarm_FP);
   assert(Expected_Result == Test_Result);
 }
+
+#endif
