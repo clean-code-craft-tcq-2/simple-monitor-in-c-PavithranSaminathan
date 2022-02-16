@@ -1,7 +1,7 @@
 #ifndef TempMonitor_H
 #define TempMonitor_H
 
-#include "BMS.h"
+#include "PrintLanguage.h"
 
 #define TEMP_WARNING_TOLERANCE  4
 #define TEMP_LOW_THRESHOLD     (float)0U
