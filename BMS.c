@@ -28,44 +28,7 @@ void PrintData(const char *data)
   printf("%s\n",data);
 }
 
-bool TempPrintWarning(float ATemp_F)
-{
-  if(((TEMP_LOW_THRESHOLD + TEMP_WARNING_TOLERANCE) > ATemp_F) || ((TEMP_HIGH_THRESHOLD - TEMP_WARNING_TOLERANCE) < ATemp_F))
-  {
-    PrintData(Notify[0]);
-    return TRUE;
-  }
-  else
-  {
-    return FALSE;
-  }
-}
 
-bool TempPrintAlarm(float ATemp_F)
-{
-  if((TEMP_LOW_THRESHOLD > ATemp_F) || (TEMP_HIGH_THRESHOLD < ATemp_F))
-  {
-    PrintData(Alarm[0]);
-    return FALSE;
-  }
-  else
-  {
-    return TRUE;
-  }
-}
-
-/*To check Temperature violation */
-bool CheckTemperatureRange(float ATemp_F,bool (*TempPrintWarning_FP)(float), bool (*TempPrintAlarm_FP)(float))
-{
-  if(TempPrintWarning_FP(ATemp_F))
-  {
-    return TRUE;
-  }
-  else
-  {
-    return(TempPrintAlarm_FP(ATemp_F));
-  }
-}
 
 bool SOCPrintWarning(float SOC_F)
 {
@@ -168,8 +131,7 @@ bool batteryIsOk(float ATemp_F,float Asoc_F, float AChargeRate_F,
 int main() 
 {  
   
-bool (*TempPrintWarning_FP)(float ATemp_F)=TempPrintWarning;
-bool (*TempPrintAlarm_FP)(float ATemp_F)=TempPrintAlarm;
+
 bool (*SOCPrintWarning_FP)(float SOC_F)=SOCPrintWarning;
 bool (*SOCPrintAlarm_FP)(float SOC_F)=SOCPrintAlarm;
 bool (*CheckChargeRatePrintWarning_FP)(float chargeRate_F)=CheckChargeRatePrintWarning;
