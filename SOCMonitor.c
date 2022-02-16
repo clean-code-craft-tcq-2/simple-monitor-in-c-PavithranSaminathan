@@ -7,7 +7,8 @@ bool (*SOCPrintAlarm_FP)(float SOC_F)=SOCPrintAlarm;
 
 bool SOCPrintWarning(float SOC_F)
 {
-if(((SOC_LOW_THRESHOLD + SOC_WARNING_TOLERANCE) > SOC_F) || ((SOC_HIGH_THRESHOLD - SOC_WARNING_TOLERANCE ) < SOC_F))
+if((((SOC_LOW_THRESHOLD + SOC_WARNING_TOLERANCE) > SOC_F) && (SOC_LOW_THRESHOLD < SOC_F))  ||
+  ((((SOC_HIGH_THRESHOLD - SOC_WARNING_TOLERANCE) < SOC_F)) && (SOC_HIGH_THRESHOLD  > SOC_F)))
   {
     PrintData(Notify[1]);
     return TRUE;
