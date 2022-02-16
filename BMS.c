@@ -159,7 +159,9 @@ bool batteryIsOk(float ATemp_F,float Asoc_F, float AChargeRate_F,
                  bool (*TempPrintWarning_FP)(float), bool (*TempPrintAlarm_FP)(float)
                 )
 {
-  return (CheckSOC(Asoc_F,SOCPrintWarning_FP,SOCPrintAlarm_FP));// && CheckChargeRate(AChargeRate_F,CheckChargeRatePrintWarning_FP,CheckChargeRatePrintAlarm_FP) && CheckTemperatureRange(ATemp_F,PrintWarning_FP,PrintAlarm_FP));
+  return (CheckSOC(Asoc_F,SOCPrintWarning_FP,SOCPrintAlarm_FP)&&
+          CheckChargeRate(AChargeRate_F,CheckChargeRatePrintWarning_FP,CheckChargeRatePrintAlarm_FP) &&
+          CheckTemperatureRange(ATemp_F,PrintWarning_FP,PrintAlarm_FP));
 }
   
   
