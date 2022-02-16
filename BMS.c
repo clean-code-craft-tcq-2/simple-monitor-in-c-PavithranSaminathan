@@ -6,9 +6,6 @@
 
 #include <assert.h>
 
-#define WORK_ENVIRONMENT TEST
-
-
 bool batteryIsOk(float ATemp_F,float Asoc_F, float AChargeRate_F,
                  bool (*SOCPrintWarning_FP)(float), bool (*SOCPrintAlarm_FP)(float),
                  bool (*TempPrintWarning_FP)(float), bool (*TempPrintAlarm_FP)(float),
