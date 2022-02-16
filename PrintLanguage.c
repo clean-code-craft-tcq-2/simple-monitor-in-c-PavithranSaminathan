@@ -1,7 +1,5 @@
 #include "PrintLanguage.h"
 
-#define LANGUAGE ENGLISH
-
 #if(LANGUAGE == ENGLISH)
 const char *Notify[] ={"TEMPERATURE ALERT",
                      "SOC ALERT",
