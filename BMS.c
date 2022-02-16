@@ -23,7 +23,7 @@ const char *Warning[] ={"TEMPERATUR AUSSERHALB DES BEREICHS",
                     };
 #endif
 
-
+bool (*SOCPrintWarning_FP)(float SOC_F);
 
 void PrintData(const char *data)
 {
