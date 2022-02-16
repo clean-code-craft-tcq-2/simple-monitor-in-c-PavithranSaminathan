@@ -28,7 +28,7 @@ bool Check_BatteryIsOk(float ATemp_F,float Asoc_F, float AChargeRate_F,bool Expe
                           TempPrintWarning_FP,TempPrintAlarm_FP,
                           CheckChargeRatePrintWarning_FP,CheckChargeRatePrintAlarm_FP);
   
-  assert(Result == Test_Result);
+  assert(Expected_Result == Test_Result);
 }
 
 int main() 
