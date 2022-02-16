@@ -35,13 +35,14 @@ if((SOC_LOW_THRESHOLD > SOC_F) || (SOC_HIGH_THRESHOLD < SOC_F))
 /*To check State of Charge violation */
 bool CheckSOC(float SOC_F,bool (*SOCPrintWarning_FP)(float), bool (*SOCPrintAlarm_FP)(float))
 {
-  if(SOCPrintWarning_FP(SOC_F))
+  if(!SOCPrintAlarm_FP(SOC_F))
   {
-    return 1;
+    return FALSE;
   }
   else
   {
-    return(SOCPrintAlarm_FP(SOC_F));
+    SOCPrintWarning_FP(SOC_F);
+    return TRUE;
   }
 }
 
