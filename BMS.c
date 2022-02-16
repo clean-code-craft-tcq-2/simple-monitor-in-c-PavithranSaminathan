@@ -6,6 +6,9 @@
 
 #include <assert.h>
 
+#define WORK_ENVIRONMENT TEST
+
+
 bool batteryIsOk(float ATemp_F,float Asoc_F, float AChargeRate_F,
                  bool (*SOCPrintWarning_FP)(float), bool (*SOCPrintAlarm_FP)(float),
                  bool (*TempPrintWarning_FP)(float), bool (*TempPrintAlarm_FP)(float),
@@ -20,7 +23,7 @@ bool batteryIsOk(float ATemp_F,float Asoc_F, float AChargeRate_F,
   
 int main() 
 {  
-  
+  #if(WORK_ENVIRONMENT == TEST)
    /*Assert function to check batteryIsOk function */
   assert(batteryIsOk(25,70,0.7,SOCPrintWarning_FP,SOCPrintAlarm_FP,TempPrintWarning_FP,TempPrintAlarm_FP,CheckChargeRatePrintWarning_FP,CheckChargeRatePrintAlarm_FP));
 //   assert(!batteryIsOk(50, 85, 0,Temperature_Range_FP, SOC_FP, ChargeRate_FP));
@@ -41,6 +44,7 @@ int main()
     assert(CheckChargeRate(0.7,CheckChargeRatePrintWarning_FP,CheckChargeRatePrintAlarm_FP));
  //   assert(!ChargeRate(1));
   
+  #endif
   return 0;
 }
 
