@@ -162,8 +162,8 @@ bool batteryIsOk(float ATemp_F,float Asoc_F, float AChargeRate_F,bool (*SOCPrint
 int main() 
 {  
   
-bool (*PrintWarning_FP)(float ATemp_F)=TempPrintAlarm;
-bool (*PrintAlarm_FP)(float ATemp_F)=TempPrintWarning;
+bool (*PrintWarning_FP)(float ATemp_F)=TempPrintWarning;
+bool (*PrintAlarm_FP)(float ATemp_F)=TempPrintAlarm;
 bool (*SOCPrintWarning_FP)(float SOC_F)=SOCPrintWarning;
 bool (*SOCPrintAlarm_FP)(float SOC_F)=SOCPrintAlarm;
 bool (*CheckChargeRatePrintWarning_FP)(float chargeRate_F)=CheckChargeRatePrintWarning;
