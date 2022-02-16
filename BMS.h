@@ -10,4 +10,8 @@ typedef unsigned char  bool;
 
 #define WORK_ENVIRONMENT TEST
 
+#if(WORK_ENVIRONMENT==TEST)
+
+Test_CheckSOC(float ASOC,bool Expected_Result);
+
 #endif
