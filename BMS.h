@@ -12,7 +12,7 @@ typedef unsigned char  bool;
 
 #if(WORK_ENVIRONMENT==TEST)
 
-Test_CheckSOC(float ASOC,bool Expected_Result);
+extern void Test_CheckSOC(float ASOC,bool Expected_Result);
 
 #endif
 
