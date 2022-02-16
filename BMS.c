@@ -5,46 +5,6 @@
 #include <assert.h>
 
 
-bool SOCPrintWarning(float SOC_F)
-{
-if(((SOC_LOW_THRESHOLD + SOC_WARNING_TOLERANCE) > SOC_F) || ((SOC_HIGH_THRESHOLD - SOC_WARNING_TOLERANCE ) < SOC_F))
-  {
-    PrintData(Notify[1]);
-    return TRUE;
-  }
-  else
-  {
-    return FALSE;
-  }
-}
-
-bool SOCPrintAlarm(float SOC_F)
-{
-if((SOC_LOW_THRESHOLD > SOC_F) || (SOC_HIGH_THRESHOLD < SOC_F))
-  {
-    PrintData(Alarm[1]);
-    return FALSE;
-  }
-  else
-  {
-    return TRUE;
-  }
-}
-
-
-/*To check State of Charge violation */
-bool CheckSOC(float SOC_F,bool (*SOCPrintWarning_FP)(float), bool (*SOCPrintAlarm_FP)(float))
-{
-  if(SOCPrintWarning_FP(SOC_F))
-  {
-    return 1;
-  }
-  else
-  {
-    return(SOCPrintAlarm_FP(SOC_F));
-  }
-}
-
 
 bool CheckChargeRatePrintWarning(float chargeRate_F)
 {
@@ -106,9 +66,6 @@ bool batteryIsOk(float ATemp_F,float Asoc_F, float AChargeRate_F,
 int main() 
 {  
   
-
-bool (*SOCPrintWarning_FP)(float SOC_F)=SOCPrintWarning;
-bool (*SOCPrintAlarm_FP)(float SOC_F)=SOCPrintAlarm;
 bool (*CheckChargeRatePrintWarning_FP)(float chargeRate_F)=CheckChargeRatePrintWarning;
 bool (*CheckChargeRatePrintAlarm_FP)(float chargeRate_F)=CheckChargeRatePrintAlarm;
 
