@@ -3,6 +3,9 @@
 
 #include <stdio.h>
 
+#define ENGLISH   1
+#define GERMAN    2
+
 #define LANGUAGE GERMAN
 
 extern const char *Notify[];
