@@ -12,22 +12,16 @@ bool batteryIsOk(float ATemp_F,float Asoc_F, float AChargeRate_F,
                  bool (*CheckChargeRatePrintWarning_FP)(float), bool (*CheckChargeRatePrintAlarm_FP)(float)
                 )
 {
-  return (CheckSOC(Asoc_F,SOCPrintWarning_FP,SOCPrintAlarm_FP) &&
-          CheckChargeRate(AChargeRate_F,CheckChargeRatePrintWarning_FP,CheckChargeRatePrintAlarm_FP) &&
-          CheckTemperatureRange(ATemp_F,TempPrintWarning_FP,TempPrintAlarm_FP));
+      return (CheckSOC(Asoc_F,SOCPrintWarning_FP,SOCPrintAlarm_FP) &&
+              CheckChargeRate(AChargeRate_F,CheckChargeRatePrintWarning_FP,CheckChargeRatePrintAlarm_FP) &&
+              CheckTemperatureRange(ATemp_F,TempPrintWarning_FP,TempPrintAlarm_FP));
 }
   
   
 int main() 
 {  
   
-
-
-//bool (*Temperature_Range_FP)(float)= CheckTemperatureRange;
-//bool (*SOC_FP)(float)=CheckSOC;
-//bool (*ChargeRate_FP)(float) = CheckChargeRate;
-  
-    /*Assert function to check batteryIsOk function */
+   /*Assert function to check batteryIsOk function */
   assert(batteryIsOk(25,70,0.7,SOCPrintWarning_FP,SOCPrintAlarm_FP,TempPrintWarning_FP,TempPrintAlarm_FP,CheckChargeRatePrintWarning_FP,CheckChargeRatePrintAlarm_FP));
 //   assert(!batteryIsOk(50, 85, 0,Temperature_Range_FP, SOC_FP, ChargeRate_FP));
   
