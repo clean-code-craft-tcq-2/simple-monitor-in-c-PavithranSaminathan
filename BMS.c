@@ -44,6 +44,10 @@ int main()
  
   /*Assert function to check SOC function*/    
   Test_CheckSOC(19,FALSE);
+  Test_CheckSOC(20,TRUE);
+  Test_CheckSOC(45,TRUE);
+  Test_CheckSOC(79,TRUE);
+  Test_CheckSOC(80,FALSE);
   
   Test_SOCPrintWarning(19,TRUE);
   Test_SOCPrintWarning(20,TRUE);
