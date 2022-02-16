@@ -57,14 +57,14 @@ void Test_CheckSOC(float ASOC,bool Expected_Result)
 bool Test_SOCPrintAlarm(float SOC_F,bool Expected_Result)
 {
   bool Test_Result;
-  Test_Result =SOCPrintAlarm(float SOC_F);
+  Test_Result =SOCPrintAlarm(SOC_F);
   assert(Expected_Result == Test_Result);
 }
 
 bool Test_SOCPrintWarning(float SOC_F,bool Expected_Result)
 {
   bool Test_Result;
-  Test_Result =SOCPrintWarning(float SOC_F);
+  Test_Result =SOCPrintWarning(SOC_F);
   assert(Expected_Result == Test_Result);
 }
 
