@@ -55,7 +55,7 @@ bool TempPrintAlarm(float ATemp_F)
 }
 
 /*To check Temperature violation */
-bool CheckTemperatureRange(float ATemp_F,bool (*PrintWarning_FP)(float ATemp_F), bool (*PrintAlarm_FP)(float ATemp_F))
+bool CheckTemperatureRange(float ATemp_F,bool (*PrintWarning_FP)(float), bool (*PrintAlarm_FP)(float))
 {
   if(PrintWarning_FP(ATemp_F))
   {
@@ -136,7 +136,7 @@ bool CheckChargeRatePrintAlarm(float chargeRate_F)
 }
 
 /*To check ChargeRate violation */
-bool CheckChargeRate(float chargeRate_F,bool (*CheckChargeRatePrintWarning_FP)(float chargeRate_F), bool (*CheckChargeRatePrintAlarm_FP)(float chargeRate_F))
+bool CheckChargeRate(float chargeRate_F,bool (*CheckChargeRatePrintWarning_FP)(float), bool (*CheckChargeRatePrintAlarm_FP)(float))
 {
   if(CheckChargeRatePrintWarning_FP(chargeRate_F))
   {
