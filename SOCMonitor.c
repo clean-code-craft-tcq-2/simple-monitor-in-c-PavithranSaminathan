@@ -1,4 +1,5 @@
 #include "SOCMonitor.h"
+#include <assert.h>
 
 
 bool (*SOCPrintWarning_FP)(float SOC_F)=SOCPrintWarning;
