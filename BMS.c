@@ -46,8 +46,10 @@ int main()
   Test_CheckSOC(19,TRUE);
   
   Test_SOCPrintWarning(19,TRUE);
+  Test_SOCPrintWarning(20,TRUE);
+  Test_SOCPrintWarning(50,TRUE);
   
-   Test_SOCPrintAlarm(19,TRUE);
+  Test_SOCPrintAlarm(19,FALSE);
   
   /*Assert function to check Temperature_Range function*/
   //Test_CheckTemperatureRange(0,TRUE);
