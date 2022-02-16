@@ -1,6 +1,7 @@
 #include "BMS.h"
 #include "TempMonitor.h"
 #include "PrintLanguage.h"
+#include "SOCMonitor.h"
 
 #include <assert.h>
 
