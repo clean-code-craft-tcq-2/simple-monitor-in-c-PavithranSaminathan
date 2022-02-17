@@ -71,7 +71,8 @@ int main()
   Test_CheckChargeRate(1,FALSE);
   
   Test_CheckChargeRatePrintAlarm(0.7,TRUE);
-  Test_CheckChargeRatePrintAlarm(0.8,FALSE);
+  Test_CheckChargeRatePrintAlarm(0.8,TRUE);
+  Test_CheckChargeRatePrintAlarm(0.9,FALSE);
   
   
   Test_CheckChargeRatePrintWarning(1,TRUE);
