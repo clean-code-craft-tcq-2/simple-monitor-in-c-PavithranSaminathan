@@ -20,6 +20,10 @@ extern void Test_CheckTemperatureRange(float ATemp_F,bool Expected_Result);
 extern void Test_TempPrintAlarm(float ATemp_F,bool Expected_Result);
 extern void Test_TempPrintWarning(float ATemp_F,bool Expected_Result);
 
+extern bool Test_CheckChargeRate(float chargeRate_F,bool Expected_Result );
+extern bool Test_CheckChargeRatePrintAlarm(float chargeRate_F,bool Expected_Result );
+bool Test_CheckChargeRatePrintWarning(float chargeRate_F,bool Expected_Result );
+
 #endif
 
 #endif
