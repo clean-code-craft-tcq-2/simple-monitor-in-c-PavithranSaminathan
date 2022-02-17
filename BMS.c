@@ -1,10 +1,16 @@
+/*** INCLUDES ***/
+
 #include "BMS.h"
 #include "TempMonitor.h"
 #include "PrintLanguage.h"
 #include "SOCMonitor.h"
 #include "ChargeRateMonitor.h"
-
 #include <assert.h>
+
+
+/* Breif :- This function will check Temperature ,SOC and chargeRate and produce the Battery status */
+/* Return  TRUE : Battery Status OK    */
+/*         FALSE: Battery status NOK  */
 
 bool batteryIsOk(float ATemp_F,float Asoc_F, float AChargeRate_F,
                  bool (*SOCPrintWarning_FP)(float), bool (*SOCPrintAlarm_FP)(float),
@@ -41,6 +47,7 @@ int main()
   
   /*Assert function to check batteryIsOk function */
   Test_BatteryIsOk(25,70,0.7,TRUE);
+  Test_BatteryIsOk(10,0,0.7,FALSE);
  
   /*Assert function to check SOC function*/    
   Test_CheckSOC(19,FALSE);
