@@ -20,6 +20,8 @@ const char *Alarm[] ={"TEMPERATUR AUSSERHALB DES BEREICHS",
                     };
 #endif
 
+/** This function Print output data **/
+
 void PrintData(const char *data)
 {
   printf("%s\n",data);
