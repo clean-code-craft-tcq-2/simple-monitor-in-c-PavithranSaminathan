@@ -1,8 +1,12 @@
+/** INCLUDES **/
 #include "ChargeRateMonitor.h"
 #include <assert.h>
 
 bool (*CheckChargeRatePrintWarning_FP)(float chargeRate_F)=CheckChargeRatePrintWarning;
 bool (*CheckChargeRatePrintAlarm_FP)(float chargeRate_F)=CheckChargeRatePrintAlarm;
+
+
+/** Brief :- This function print warning message if charge rate exceeds 0.6*/
 
 bool CheckChargeRatePrintWarning(float chargeRate_F)
 {
@@ -17,6 +21,8 @@ bool CheckChargeRatePrintWarning(float chargeRate_F)
   }
 }
 
+/** Brief :- This function print alarm message if charge rate exceeds 0.8*/
+
 bool CheckChargeRatePrintAlarm(float chargeRate_F)
 {
    if(DEFAULT_CHARGE_RATE < chargeRate_F )
@@ -30,7 +36,8 @@ bool CheckChargeRatePrintAlarm(float chargeRate_F)
   }
 }
 
-/*To check ChargeRate violation */
+/** Brief :- This function will print alarm or warning message based on input charget rate value*/
+
 bool CheckChargeRate(float chargeRate_F,bool (*CheckChargeRatePrintWarning_FP)(float), bool (*CheckChargeRatePrintAlarm_FP)(float))
 {
   if(!CheckChargeRatePrintAlarm_FP(chargeRate_F))
@@ -47,6 +54,8 @@ bool CheckChargeRate(float chargeRate_F,bool (*CheckChargeRatePrintWarning_FP)(f
 
 #if(WORK_ENVIRONMENT == TEST)
 
+/** Brief :- This test function will check CheckChargeRate output*/
+
 bool Test_CheckChargeRate(float chargeRate_F,bool Expected_Result )
 {
    bool Test_Result;
@@ -54,12 +63,16 @@ bool Test_CheckChargeRate(float chargeRate_F,bool Expected_Result )
    assert(Expected_Result == Test_Result);
 }
 
+/** Brief :- This test function will check CheckChargeRatePrintAlarm output*/
+
 bool Test_CheckChargeRatePrintAlarm(float chargeRate_F,bool Expected_Result )
 {
    bool Test_Result;
    Test_Result=CheckChargeRatePrintAlarm(chargeRate_F);
    assert(Expected_Result == Test_Result);
 }
+
+/** Brief :- This test function will check CheckChargeRatePrintWarning output*/
 
 bool Test_CheckChargeRatePrintWarning(float chargeRate_F,bool Expected_Result )
 {
