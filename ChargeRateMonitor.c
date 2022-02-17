@@ -6,7 +6,7 @@ bool (*CheckChargeRatePrintAlarm_FP)(float chargeRate_F)=CheckChargeRatePrintAla
 
 bool CheckChargeRatePrintWarning(float chargeRate_F)
 {
-   if((DEFAULT_CHARGE_RATE - TOLERANCE_CHARGE_RATE)< chargeRate_F && (DEFAULT_CHARGE_RATE > chargeRate_F ))
+   if((DEFAULT_CHARGE_RATE - TOLERANCE_CHARGE_RATE)< chargeRate_F )
   {
     PrintData(Notify[2]);
     return TRUE;
