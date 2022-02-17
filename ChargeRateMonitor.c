@@ -33,13 +33,13 @@ bool CheckChargeRatePrintAlarm(float chargeRate_F)
 /*To check ChargeRate violation */
 bool CheckChargeRate(float chargeRate_F,bool (*CheckChargeRatePrintWarning_FP)(float), bool (*CheckChargeRatePrintAlarm_FP)(float))
 {
-  if(CheckChargeRatePrintWarning_FP(chargeRate_F))
+  if(CheckChargeRatePrintAlarm_FP(chargeRate_F))
   {
     return TRUE;
   }
   else
   {
-    return (CheckChargeRatePrintAlarm_FP(chargeRate_F));
+    return (CheckChargeRatePrintWarning_FP(chargeRate_F));
   }
 }
 
