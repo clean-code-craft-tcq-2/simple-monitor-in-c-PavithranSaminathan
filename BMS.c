@@ -66,7 +66,9 @@ int main()
   Test_TempPrintWarning(47,TRUE);
   
   /*Assert function to check ChargeRate function*/  
-  //CheckChargeRate(0.7,TRUE);
+  Test_CheckChargeRate(0.7,TRUE);
+  Test_CheckChargeRatePrintAlarm(0.7,TRUE);
+  Test_CheckChargeRatePrintWarning(1,TRUE);
   
   #endif
   return 0;
