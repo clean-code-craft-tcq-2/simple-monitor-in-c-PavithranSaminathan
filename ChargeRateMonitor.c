@@ -46,7 +46,7 @@ bool CheckChargeRate(float chargeRate_F,bool (*CheckChargeRatePrintWarning_FP)(f
   }
   else
   {
-    return (CheckChargeRatePrintWarning_FP(chargeRate_F));
+     CheckChargeRatePrintWarning_FP(chargeRate_F);
      return TRUE;
   }
 }
